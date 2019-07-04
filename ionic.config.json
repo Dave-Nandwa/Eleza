@@ -1,0 +1,8 @@
+{
+  "name": "treeProject",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "id": "39405c61"
+}

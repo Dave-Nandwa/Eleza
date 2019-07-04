@@ -1,0 +1,34 @@
+
+ion-content,
+ion-toolbar {
+    --background: #E7F8F3!important;
+}
+
+ion-toolbar {
+    color: #22D6A5;
+}
+
+.noScroll {
+    overflow: hidden;
+}
+
+#map {
+    height: 100vh; // for my situation
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.mapboxgl-canvas {
+    left: 0;
+}
+
+
+.marker {
+    background-image: url('../../../../src/assets/img/marker.png');
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+  }

@@ -15,10 +15,11 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: './pages/login/login.module#LoginPageModule'
+    loadChildren: './pages/login/login.module#LoginPageModule',
+    canActivate: [AuthGuard],
   },
   { path: 'sign-up', loadChildren: './pages/sign-up/sign-up.module#SignUpPageModule', canActivate: [AuthGuard] },
-  { path: 'trees-map', loadChildren: './pages/trees-map/trees-map.module#TreesMapPageModule', canActivate: [AuthGuard] },
+  { path: 'trees-map', loadChildren: './pages/trees-map/trees-map.module#TreesMapPageModule', },
 ];
 
 @NgModule({

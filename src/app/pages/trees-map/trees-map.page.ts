@@ -16,19 +16,21 @@ export class TreesMapPage implements OnInit {
 
     //Mapbox Variables
     map : mapboxgl.Map;
-    style = 'mapbox://styles/mapbox/outdoors-v9';
+    style = 'mapbox://styles/dnandwa/cjxn35gd301m11cmtg99dspu2';
     lat = -1.28333;
     lng = 36.81667;
     message = 'Hello World!';
-
+ 
     // data
     source : any;
     markers : any;
+    marker : any;
 
     public treesList : Observable < any >;
     public treeList : any[];
     public loadedTreeList : any[];
     arrayOfTrees : any[];
+    geojson : {};
     constructor(private mapService : MapService, private geolocation : Geolocation, private eventsService : EventsService, private utils : UtilitiesService, private router : Router, private firestore : AngularFirestore) {}
 
     ngOnInit() {
@@ -40,16 +42,19 @@ export class TreesMapPage implements OnInit {
                     console.log(tree);
                     this.arrayOfTrees.push({id: tree.id, latitude: tree.latitude, longitude: tree.longitude});
                     const coords = [tree.longitude, tree.latitude];
+                    //Add the coords to the geojson file
+                    this.mapService.geojson.source.data.features.push({
+                        "type": "Feature",
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": coords
+                    }});
                 });
-                this
-                    .utils
+                this.utils
                     .dismissLoading();
                 console.log("Gotten Everything")
             }, err => alert(err));
         // this.openLayersdisplayMap();
-    }
-
-    ngAfterViewInit() {
         this.initMap();
     }
 
@@ -58,13 +63,10 @@ export class TreesMapPage implements OnInit {
                 this.lat = resp.coords.latitude;
                 this.lng = (resp.coords.longitude);
                 console.log("I'm in the init function now")
-                this
-                    .map
-                    .flyTo({
-                        center: [this.lng, this.lat]
-                    });
-            })
-            .catch((error) => {
+                this.map.flyTo({
+                    center: [this.lng, this.lat]
+                });
+            }).catch((error) => {
                 // TypeError: failed to get user Location
                 alert(error);
                 this.utils.presentToast("We couldn't find you, please turn on your GPS.", "toast-error");
@@ -76,23 +78,23 @@ export class TreesMapPage implements OnInit {
         this.map = new mapboxgl.Map({
             container: 'map',
             style: this.style,
-            zoom: 9,
+            zoom: 12,
             center: [this.lng, this.lat]
         });
         /// Add map controls
         this.map.addControl(new mapboxgl.NavigationControl());
+        this.addMarkers();
     }
 
     addMarkers() {
-      // add markers to map
-      this.mapService.geojson.features.forEach(function(marker) {
-        // create a HTML element for each feature
-        var el = document.createElement('div');
-        el.className = 'marker';
-
-        // make a marker for each feature and add to the map
-        new mapboxgl.Marker(el).setLngLat(marker.geometry.coordinates).addTo(this.map);
-      });
+        /// Add realtime firebase data on map load
+        this.map.on('load', (event) => {
+            this.map.loadImage('../../../assets/img/tree-marker.png', (error, image) => {
+                if (error) throw error;
+                this.map.addImage('marker', image);
+                this.map.addLayer(this.mapService.geojson);
+            });
+    });
     }
 
 }

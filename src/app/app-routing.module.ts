@@ -19,7 +19,9 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'sign-up', loadChildren: './pages/sign-up/sign-up.module#SignUpPageModule', canActivate: [AuthGuard] },
-  { path: 'trees-map', loadChildren: './pages/trees-map/trees-map.module#TreesMapPageModule', },
+  { path: 'trees-map', loadChildren: './pages/trees-map/trees-map.module#TreesMapPageModule', },  { path: 'user-trees', loadChildren: './pages/user-trees/user-trees.module#UserTreesPageModule' },
+  { path: 'profile', loadChildren: './pages/profile/profile.module#ProfilePageModule' },
+
 ];
 
 @NgModule({

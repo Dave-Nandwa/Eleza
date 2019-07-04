@@ -9,78 +9,89 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
-@import url('https://fonts.googleapis.com/css?family=Poppins|Roboto|Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
-$headings: 'Poppins', sans-serif;
+@import url( 'https://fonts.googleapis.com/css?family=Montserrat|Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto|Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
+$headings: 'Gilroy Bold', sans-serif;
+@font-face {
+    font-family: "Gilroy Regular";
+    font-style: normal;
+    font-weight: normal;
+    src: url("assets/fonts/Gilroy/Gilroy-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Gilroy Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: url("assets/fonts/Gilroy/Gilroy-Bold.ttf") format("truetype");
+}
 * {
-  font-family: 'Poppins' !important;
+    font-family: 'Raleway' !important;
+    font-weight: 600;
 }
 
 .auth-page {
-  form {
-    margin-bottom: 32px;
+    form {
+        margin-bottom: 32px;
 
-    button {
-      margin-top: 20px;
+        button {
+            margin-top: 20px;
+        }
     }
-  }
-
-  p {
-    font-size: 0.8em;
-    color: #d2d2d2;
-  }
-
-  ion-label {
-    margin-left: 5px;
-  }
-
-  ion-input {
-    padding: 5px;
-  }
-
-  .invalid {
-    border-bottom: 1px solid #ff6153;
-  }
-
-  .error-message {
-    min-height: 2.2rem;
 
     p {
-      font-size: 60%;
+        font-size: 0.8em;
+        color: #d2d2d2;
     }
 
     ion-label {
-      margin: 2px 0;
+        margin-left: 5px;
     }
 
-    .item-inner {
-      border-bottom: 0 !important;
+    ion-input {
+        padding: 5px;
     }
-  }
+
+    .invalid {
+        border-bottom: 1px solid #ff6153;
+    }
+
+    .error-message {
+        min-height: 2.2rem;
+
+        p {
+            font-size: 60%;
+        }
+
+        ion-label {
+            margin: 2px 0;
+        }
+
+        .item-inner {
+            border-bottom: 0 !important;
+        }
+    }
 }
-
 
 .auth-img {
-  width:100%;
-  height:65%;
+    width: 100%;
+    height: 65%;
 }
 
-
 .download-img {
-  width:25%;
-  height:25%;
+    width: 25%;
+    height: 25%;
 }
 
 .toast-success {
-  --background: rgba(100, 194, 158, 0.863);
-  --color:#fff;
+    --background: rgba(100, 194, 158, 0.863);
+    --color: #fff;
 }
 
 .toast-info {
-  --background: rgba(53, 127, 223, 0.781);
-  --color:#fff;
+    --background: rgba(53, 127, 223, 0.781);
+    --color: #fff;
 }
 
 .toast-error {
-  --background: rgba(230, 36, 29, 0.925);
-  --color:#fff;
+    --background: rgba(230, 36, 29, 0.925);
+    --color: #fff;
 }

@@ -30,7 +30,7 @@ export class MapService {
         },
         "layout": {
             "icon-image": "marker",
-            "icon-size": 0.10
+            "icon-size": 0.05
         }
     };
     constructor(public afAuth : AngularFireAuth, private firestore : AngularFirestore) {

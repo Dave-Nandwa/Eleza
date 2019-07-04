@@ -11,9 +11,14 @@ import * as mapboxgl from '../../../../node_modules/mapbox-gl';
 import {MapService} from '../../services/map.service';
 import {GeoJson, FeatureCollection} from '../../map';
 
-@Component({selector: 'app-trees-map', templateUrl: './trees-map.page.html', styleUrls: ['./trees-map.page.scss']})
-export class TreesMapPage implements OnInit {
+@Component({
+  selector: 'app-user-trees',
+  templateUrl: './user-trees.page.html',
+  styleUrls: ['./user-trees.page.scss'],
+})
+export class UserTreesPage implements OnInit {
 
+  
     //Mapbox Variables
     map : mapboxgl.Map;
     style = 'mapbox://styles/dnandwa/cjxn35gd301m11cmtg99dspu2';
@@ -34,8 +39,8 @@ export class TreesMapPage implements OnInit {
     constructor(private mapService : MapService, private geolocation : Geolocation, private eventsService : EventsService, private utils : UtilitiesService, private router : Router, private firestore : AngularFirestore) {}
 
     ngOnInit() {
-        this.utils.presentLoading("Searching for trees...");
-        this.treesList = this.mapService.getTreeList().valueChanges();
+        this.utils.presentLoading("Getting your trees...");
+        this.treesList = this.eventsService.getUserTreeList().valueChanges();
         this.treesList.subscribe(res => {
                 this.arrayOfTrees = [];
                 res.forEach(tree => {

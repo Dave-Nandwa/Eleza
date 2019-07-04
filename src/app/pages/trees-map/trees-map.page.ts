@@ -50,9 +50,6 @@ export class TreesMapPage implements OnInit {
                             "coordinates": coords
                     }});
                 });
-                this.utils
-                    .dismissLoading();
-                console.log("Gotten Everything")
             }, err => alert(err));
         // this.openLayersdisplayMap();
         this.initMap();
@@ -66,6 +63,8 @@ export class TreesMapPage implements OnInit {
                 this.map.flyTo({
                     center: [this.lng, this.lat]
                 });
+                this.utils.dismissLoading();
+                console.log("Gotten Everything")
             }).catch((error) => {
                 // TypeError: failed to get user Location
                 alert(error);
@@ -89,6 +88,7 @@ export class TreesMapPage implements OnInit {
     addMarkers() {
         /// Add realtime firebase data on map load
         this.map.on('load', (event) => {
+            this.map.resize();
             this.map.loadImage('../../../assets/img/tree-marker.png', (error, image) => {
                 if (error) throw error;
                 this.map.addImage('marker', image);
